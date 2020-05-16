@@ -23,6 +23,7 @@ namespace CurrencyRate.Infrastructure.Repository
 
         public async Task<List<CurrencyExchangeRate>> GetAsync(string currencyFrom, string currencyTo, DateTime from, DateTime to)
         {
+            Console.WriteLine($"Getting from cache {from} {to}");
             return await entities.Where(x => x.CurrencyFrom == currencyFrom && x.CurrrencyTo == currencyTo
             && x.Date >= from && x.Date <= to).ToListAsync();
         }
