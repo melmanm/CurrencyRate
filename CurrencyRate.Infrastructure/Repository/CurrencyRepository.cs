@@ -32,7 +32,7 @@ namespace CurrencyRate.Infrastructure.Repository
             var count = await entities.Where(x => x.CurrencyFrom == currencyFrom && x.CurrrencyTo == currencyTo
                         && x.Date >= from && x.Date <= to).CountAsync();
 
-            return count == (to - from).TotalDays;
+            return count == (to - from).TotalDays + 1;
         }
 
         public async Task StoreAsync(List<CurrencyExchangeRate> list)

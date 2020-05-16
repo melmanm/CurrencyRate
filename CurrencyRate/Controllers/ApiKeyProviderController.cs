@@ -20,11 +20,19 @@ namespace CurrencyRate.API.Controllers
         }
 
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<IActionResult> Get()
         {
-            var key = _apiKeyService.GenerateApiKey();
-            await _apiKeyService.StoreApiKey(key);
-            return key.Key;
+            try
+            {
+                var key = _apiKeyService.GenerateApiKey();
+                await _apiKeyService.StoreApiKey(key);
+                return Ok(key.Key);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
     }
 }

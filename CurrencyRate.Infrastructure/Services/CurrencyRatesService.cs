@@ -1,12 +1,13 @@
 ﻿using CurrencyRate.Core.Domain;
 using CurrencyRate.Infrastructure.Repository;
+using CurrencyRate.Infrastructure.Services.ExternalAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyRate.Infrastructure.Services.ExternalAPI
+namespace CurrencyRate.Infrastructure.Services
 {
     public class CurrencyRatesService : ICurrencyRatesService
     {
@@ -73,10 +74,9 @@ namespace CurrencyRate.Infrastructure.Services.ExternalAPI
                             }
                         }
                     }
-
-                    await _currencyRepository.StoreAsync(result);
-                    result.AddRange(currencyRates.OrderBy(x => x.Date));
+                    await _currencyRepository.StoreAsync(currencyRates);
                 }
+                result.AddRange(currencyRates.OrderBy(x => x.Date));
             }
             return result;
         }
