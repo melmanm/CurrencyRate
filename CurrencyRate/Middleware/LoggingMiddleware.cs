@@ -21,13 +21,15 @@ namespace CurrencyRate.API.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            var originalBodyStream = context.Response.Body;
-            using (var responseBody = new MemoryStream())
+            try
             {
                 await _next(context);
-                _logger.Log(LogLevel.Information, $"Request from {context.Connection.RemoteIpAddress} to {context.Request.Path};");
-                await responseBody.CopyToAsync(originalBodyStream);
             }
+            finally
+            {
+                _logger.Log(LogLevel.Information, $"Request from {context.Connection.RemoteIpAddress} to {context.Request.Path};");
+            }
+
         }
     }
 }

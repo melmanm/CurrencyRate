@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CurrencyRate.API.Models;
 using CurrencyRate.Infrastructure.Services;
 using CurrencyRate.Infrastructure.Services.ExternalAPI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace CurrencyRate.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get([FromBody] GetCurrencyRatesModel model)
         {
             if(model.endDate < model.startDate)

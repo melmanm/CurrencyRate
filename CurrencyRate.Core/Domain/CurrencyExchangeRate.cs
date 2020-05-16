@@ -10,7 +10,6 @@ namespace CurrencyRate.Core.Domain
         public string CurrrencyTo { get; set; }
         public DateTime Date { get; set; }
         public decimal Value { get; set; }
-
         public bool IsFromPreviousDay { get; set; }
     }
 }

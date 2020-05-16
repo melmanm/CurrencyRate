@@ -9,6 +9,5 @@ namespace CurrencyRate.Infrastructure.Services
     public interface ICurrencyRatesService
     {
         Task<List<CurrencyExchangeRate>> GetCurrencyExchangeRatesAsync(Dictionary<string, string> currencyCodes, DateTime from, DateTime to);
-
     }
 }
