@@ -9,7 +9,7 @@ namespace CurrencyRate.Infrastructure.Services.Auth
     public interface IApiKeyService
     {
         ApiKey GenerateApiKey();
-        Task StoreApiKey(string key);
+        Task StoreApiKey(ApiKey key);
         Task<bool> VerifyApiKey(string key);
     }
 }

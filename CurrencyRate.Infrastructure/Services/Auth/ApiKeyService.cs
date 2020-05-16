@@ -1,4 +1,5 @@
 ﻿using CurrencyRate.Core.Auth;
+using CurrencyRate.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,19 +9,31 @@ namespace CurrencyRate.Infrastructure.Services.Auth
 {
     public class ApiKeyService : IApiKeyService
     {
-        public ApiKey GenerateApiKey()
+
+        private readonly IApiKeyRepository _apiKeyRepository;
+
+        public ApiKeyService(IApiKeyRepository apiKeyRepository)
         {
-            throw new NotImplementedException();
+            _apiKeyRepository = apiKeyRepository;
         }
 
-        public Task StoreApiKey(string key)
+        public ApiKey GenerateApiKey()
         {
-            throw new NotImplementedException();
+            return new ApiKey()
+            {
+                Key = Guid.NewGuid().ToString(),
+            };
+        }
+
+        public async Task StoreApiKey(ApiKey key)
+        {
+            await _apiKeyRepository.StoreApiKeyAsync(key);
         }
 
         public async Task<bool> VerifyApiKey(string key)
         {
-            return true;
+            var existingKey = await _apiKeyRepository.GetApiKeyAsync(key);
+            return existingKey != null;
         }
     }
 }

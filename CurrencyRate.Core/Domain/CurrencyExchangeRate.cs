@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CurrencyRate.Core.Domain
 {
-    public class CurrencyRate
+    public class CurrencyExchangeRate : IBaseEntity
     {
         public string CurrencyFrom { get; set; }
         public string CurrrencyTo { get; set; }

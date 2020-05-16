@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CurrencyRate.Core.Auth
 {
-    public class ApiKey
+    public class ApiKey : IBaseEntity
     {
         public string Key { get; set; }
     }
