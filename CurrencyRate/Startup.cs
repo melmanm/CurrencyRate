@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CurrencyRate.API.ApiKeyAuth;
 using CurrencyRate.Infrastructure.Repository;
 using CurrencyRate.Infrastructure.Services.Auth;
+using CurrencyRate.Infrastructure.Services.ExternalAPI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,6 +45,10 @@ namespace CurrencyRate
 
             services.AddScoped<IApiKeyService, ApiKeyService>();
             services.AddScoped<IApiKeyRepository, ApiKeyRepository>();
+            services.AddScoped<ICurrencyRatesRetriver, CurrencyRatesRetriver>();
+            services.AddScoped<ICurrencyRatesService, CurrencyRatesService>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+
 
             services.AddControllers();
         }

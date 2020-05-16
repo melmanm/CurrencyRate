@@ -9,7 +9,9 @@ namespace CurrencyRate.Infrastructure.Repository
 {
     public interface ICurrencyRepository
     {
-        Task<List<CurrencyExchangeRate>> GetAsync(Expression<Func<CurrencyExchangeRate, bool>> predicate);
+        Task<List<CurrencyExchangeRate>> GetAsync(string currencyFrom, string currencyTo, DateTime from, DateTime to);
+
+        Task<bool> IsDataAvailable(string currencyFrom, string currencyTo, DateTime from, DateTime to);
 
         Task StoreAsync(List<CurrencyExchangeRate> entities);
     }

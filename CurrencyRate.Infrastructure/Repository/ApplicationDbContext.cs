@@ -18,6 +18,7 @@ namespace CurrencyRate.Infrastructure.Repository
             builder.Entity<ApiKey>().HasKey(x => x.Key);
             builder.Entity<CurrencyExchangeRate>().HasKey(x => new { x.CurrencyFrom, x.CurrrencyTo, x.Date });
             builder.Entity<CurrencyExchangeRate>().Property(p => p.Value).HasColumnType("decimal(18,10)");
+            builder.Entity<CurrencyExchangeRate>().Property(p => p.IsFromPreviousDay).HasDefaultValue(false);
         }
     }
 }
