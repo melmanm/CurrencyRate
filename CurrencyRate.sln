@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRate.Core", "Curren
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRate.Tests", "CurrencyRate.Tests\CurrencyRate.Tests.csproj", "{90AEDB91-D76E-4DE9-AB26-3FCAC6A7880E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRate.Benchmark", "CurrencyRate.Benchmark\CurrencyRate.Benchmark.csproj", "{A7314EC3-5E10-4EBC-A23A-1FC60C825080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRate.Benchmark", "CurrencyRate.Benchmark\CurrencyRate.Benchmark.csproj", "{A7314EC3-5E10-4EBC-A23A-1FC60C825080}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E84A6C73-3E31-4085-AC03-C92FF52C332B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90AEDB91-D76E-4DE9-AB26-3FCAC6A7880E} = {E84A6C73-3E31-4085-AC03-C92FF52C332B}
+		{A7314EC3-5E10-4EBC-A23A-1FC60C825080} = {E84A6C73-3E31-4085-AC03-C92FF52C332B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15643B35-5771-4B1D-8504-C4E584CEFCC7}

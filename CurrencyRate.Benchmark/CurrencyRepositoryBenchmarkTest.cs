@@ -10,7 +10,7 @@ using System.Text;
 
 namespace CurrencyRate.Benchmark
 {
-    [RPlotExporter]
+    [CsvMeasurementsExporter, RPlotExporter]
     public class CurrencyRepositoryBenchmarkTest
     {
         public const string CONNECTION_STRING = "Server = (localdb)\\mssqllocaldb; Database=CurrencyRate;Trusted_Connection=True;MultipleActiveResultSets=true";
@@ -22,9 +22,9 @@ namespace CurrencyRate.Benchmark
         public CurrencyRepositoryBenchmarkTest()
         {
         }
-        private void CreateRandomDates()
+        private void SetRandomDates()
         {
-            var beginDate = DateTime.Parse("2019-06-01");
+            var beginDate = DateTime.Parse("2019-01-01");
             var daysDifference = (int)(DateTime.Now - beginDate).TotalDays;
             var random = new Random();
             var firstRandom = random.Next(daysDifference);
@@ -38,7 +38,7 @@ namespace CurrencyRate.Benchmark
         public void WithoutCache()
         {
 
-            CreateRandomDates();
+            SetRandomDates();
             var result = _currencyRatesServiceWithoutCache.GetCurrencyExchangeRatesAsync
                    (new Dictionary<string, string>() { ["USD"] = "EUR" }, startDate, endDate).Result;
         }
@@ -46,7 +46,7 @@ namespace CurrencyRate.Benchmark
         [Benchmark]
         public void WithCache()
         {
-            CreateRandomDates();
+            SetRandomDates();
             var result = _currencyRatesServiceWithCache.GetCurrencyExchangeRatesAsync
                    (new Dictionary<string, string>() { ["USD"] = "EUR" }, startDate, endDate).Result;
 

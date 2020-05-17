@@ -59,7 +59,7 @@ namespace CurrencyRate.Tests
         }
 
         [TestMethod]
-        public void GetCurrencyExchangeRatesAsync_ThrowsExceptionIfGettingDataForHolyday()
+        public void GetCurrencyExchangeRatesAsync_GetsEmpyDataListForHolyday()
         {
             //Arrange
             var date = DateTime.Parse("2020-05-17"); //Sunday
@@ -67,10 +67,10 @@ namespace CurrencyRate.Tests
             var currencyTo = "EUR";
 
             //Act
-            var result = _currencyRatesRetriver.GetCurrencyExchangeRatesAsync(currencyFrom, currencyTo, date, date);
+            var result = _currencyRatesRetriver.GetCurrencyExchangeRatesAsync(currencyFrom, currencyTo, date, date).Result;
 
             //Assert
-            Assert.ThrowsException<AggregateException>(() => result.Result);
+            Assert.AreEqual(0, result.Count);
         }
     }
 }

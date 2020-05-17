@@ -23,7 +23,7 @@ namespace CurrencyRate.Infrastructure.Repository
 
         public async Task<List<CurrencyExchangeRate>> GetAsync(string currencyFrom, string currencyTo, DateTime from, DateTime to)
         {
-            Console.WriteLine($"Getting from cache {from} {to}");
+            Console.WriteLine($" -- Getting from cache {currencyFrom}->{currencyTo}. {from} {to} --");
             return await entities.Where(x => x.CurrencyFrom == currencyFrom && x.CurrrencyTo == currencyTo
             && x.Date >= from && x.Date <= to).ToListAsync();
         }
@@ -39,7 +39,7 @@ namespace CurrencyRate.Infrastructure.Repository
         public async Task StoreAsync(List<CurrencyExchangeRate> list)
         {
             var toAdd = list.Where(x =>!entities.Any(y => y.CurrencyFrom == x.CurrencyFrom 
-            && y.CurrrencyTo == x.CurrrencyTo && y.Value == x.Value));
+            && y.CurrrencyTo == x.CurrrencyTo && y.Date == x.Date));
 
             entities.AddRange(toAdd);
 
